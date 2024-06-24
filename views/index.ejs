@@ -2,10 +2,12 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
+    <%- include("navbar", {name: "Glen"}) -%>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <p>Test extra line</p>
   </body>
 </html>
