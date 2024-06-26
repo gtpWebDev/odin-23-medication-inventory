@@ -1,0 +1,13 @@
+<h1><%= title %></h1>
+
+<% if (condition_list.length) { %>
+<ul>
+  <% for (let i=0; i < condition_list.length; i++) { %>
+  <li>
+    <a href="<%=condition_list[i].url%>"><%= condition_list[i].condition %> </a>
+  </li>
+  <% } %>
+</ul>
+<% } else { %>
+<p>There are no conditions as yet.</p>
+<% } %>

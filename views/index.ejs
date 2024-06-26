@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <body>
-    <%- include("navbar", {name: "Glen"}) -%>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <p>Test extra line</p>
-  </body>
-</html>
+<h1><%= title %></h1>
+<p>Welcome to the <em><%= title %></em></p>
+<p>The library has the following record counts:</p>
+
+<ul>
+  <li><strong>Conditions:</strong> <%= condition_count %></li>
+</ul>

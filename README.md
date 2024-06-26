@@ -108,3 +108,14 @@ Installing mongoose installs all its dependencies and the MongoDB database drive
 ```bash
 npm install mongoose
 ```
+
+## Install Async Error Handler
+
+express-async-handler is a simplifying library that gives a short hand for error catching, replacing a try catch structure which sends the error to the next middleware on error
+
+express-ejs-layouts - update once know
+
+```bash
+npm install express-async-handler
+npm install express-ejs-layouts
+```
