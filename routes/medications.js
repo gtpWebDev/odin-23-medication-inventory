@@ -4,6 +4,10 @@ const router = express.Router();
 // Require controller modules.
 const index_controller = require("../controllers/indexController");
 const condition_controller = require("../controllers/conditionController");
+const regimen_controller = require("../controllers/regimenController");
+const patient_controller = require("../controllers/patientController");
+const medication_controller = require("../controllers/medicationController");
+const prescription_controller = require("../controllers/prescriptionController");
 
 /// INDEX ROUTE ///
 
@@ -38,10 +42,9 @@ router.get("/condition/:id", condition_controller.condition_detail);
 // GET request for list of all Book items.
 router.get("/conditions", condition_controller.condition_list);
 
+/// REGIMEN ROUTES ///
+
 /*
-
-/// AUTHOR ROUTES ///
-
 // GET request for creating Author. NOTE This must come before route for id (i.e. display author).
 router.get("/author/create", author_controller.author_create_get);
 
@@ -59,83 +62,36 @@ router.get("/author/:id/update", author_controller.author_update_get);
 
 // POST request to update Author.
 router.post("/author/:id/update", author_controller.author_update_post);
-
-// GET request for one Author.
-router.get("/author/:id", author_controller.author_detail);
-
-// GET request for list of all Authors.
-router.get("/authors", author_controller.author_list);
-
-/// GENRE ROUTES ///
-
-// GET request for creating a Genre. NOTE This must come before route that displays Genre (uses id).
-router.get("/genre/create", genre_controller.genre_create_get);
-
-//POST request for creating Genre.
-router.post("/genre/create", genre_controller.genre_create_post);
-
-// GET request to delete Genre.
-router.get("/genre/:id/delete", genre_controller.genre_delete_get);
-
-// POST request to delete Genre.
-router.post("/genre/:id/delete", genre_controller.genre_delete_post);
-
-// GET request to update Genre.
-router.get("/genre/:id/update", genre_controller.genre_update_get);
-
-// POST request to update Genre.
-router.post("/genre/:id/update", genre_controller.genre_update_post);
-
-// GET request for one Genre.
-router.get("/genre/:id", genre_controller.genre_detail);
-
-// GET request for list of all Genre.
-router.get("/genres", genre_controller.genre_list);
-
-/// BOOKINSTANCE ROUTES ///
-
-// GET request for creating a BookInstance. NOTE This must come before route that displays BookInstance (uses id).
-router.get(
-  "/bookinstance/create",
-  book_instance_controller.bookinstance_create_get
-);
-
-// POST request for creating BookInstance.
-router.post(
-  "/bookinstance/create",
-  book_instance_controller.bookinstance_create_post
-);
-
-// GET request to delete BookInstance.
-router.get(
-  "/bookinstance/:id/delete",
-  book_instance_controller.bookinstance_delete_get
-);
-
-// POST request to delete BookInstance.
-router.post(
-  "/bookinstance/:id/delete",
-  book_instance_controller.bookinstance_delete_post
-);
-
-// GET request to update BookInstance.
-router.get(
-  "/bookinstance/:id/update",
-  book_instance_controller.bookinstance_update_get
-);
-
-// POST request to update BookInstance.
-router.post(
-  "/bookinstance/:id/update",
-  book_instance_controller.bookinstance_update_post
-);
-
-// GET request for one BookInstance.
-router.get("/bookinstance/:id", book_instance_controller.bookinstance_detail);
-
-// GET request for list of all BookInstance.
-router.get("/bookinstances", book_instance_controller.bookinstance_list);
-
 */
+
+// GET request for one Regimen.
+router.get("/regimen/:id", regimen_controller.regimen_detail);
+
+// GET request for list of all Regimens.
+router.get("/regimens", regimen_controller.regimen_list);
+
+/// PATIENT ROUTES ///
+
+// GET request for one Patient.
+router.get("/patient/:id", patient_controller.patient_detail);
+
+// GET request for list of all Patients.
+router.get("/patients", patient_controller.patient_list);
+
+/// MEDICATION ROUTES ///
+
+// GET request for one Medication.
+router.get("/medication/:id", medication_controller.medication_detail);
+
+// GET request for list of all Medications.
+router.get("/medications", medication_controller.medication_list);
+
+/// PRESCRIPTION ROUTES ///
+
+// GET request for one Prescription.
+router.get("/prescription/:id", prescription_controller.prescription_detail);
+
+// GET request for list of all Prescriptions.
+router.get("/prescriptions", prescription_controller.prescription_list);
 
 module.exports = router;

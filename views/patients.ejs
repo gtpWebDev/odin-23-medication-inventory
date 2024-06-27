@@ -1,0 +1,15 @@
+<h1><%= title %></h1>
+
+<% if (patient_list.length) { %>
+<ul>
+  <% for (let i=0; i < patient_list.length; i++) { %>
+  <li>
+    <a href="<%=patient_list[i].url%>"
+      ><%= patient_list[i].name %> (<%= patient_list[i].age %>)</a
+    >
+  </li>
+  <% } %>
+</ul>
+<% } else { %>
+<p>There are no patients as yet.</p>
+<% } %>

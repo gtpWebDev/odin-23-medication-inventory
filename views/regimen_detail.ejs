@@ -1,0 +1,15 @@
+<h1><%= title %></h1>
+
+<div style="margin-left: 20px; margin-top: 20px">
+  <p>
+    <strong>Regimen details: </strong>
+  </p>
+
+  <ul>
+    <% for (let i=0; i < regimen.dosages.length; i++) { %>
+    <li>
+      Take <%= regimen.dosages[i].quantity %> at <%= regimen.dosages[i].time %>
+    </li>
+    <% } %>
+  </ul>
+</div>

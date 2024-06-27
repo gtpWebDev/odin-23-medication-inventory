@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const { DateTime } = require("luxon");
+const { format } = require("date-fns");
 
 const Schema = mongoose.Schema;
 
@@ -8,18 +8,18 @@ const PatientSchema = new Schema({
   first_name: { type: String, required: true, maxLength: 100 },
   family_name: { type: String, required: true, maxLength: 100 },
   date_of_birth: { type: Date, required: true, max: new Date() },
-  conditions: { type: Schema.Types.ObjectId, ref: "Condition" },
+  conditions: [{ type: Schema.Types.ObjectId, ref: "Condition" }],
 });
 
 // Virtual for patient's full name which does not need to be stored in the db
 PatientSchema.virtual("name").get(function () {
   // To avoid errors in cases where an author does not have either a family name or first name
   // We want to make sure we handle the exception by returning an empty string for that case
-  let fullname = "";
+  let fullName = "";
   if (this.first_name && this.family_name) {
-    fullname = `${this.family_name}, ${this.first_name}`;
+    fullName = `${this.family_name}, ${this.first_name}`;
   }
-  return fullname;
+  return fullName;
 });
 
 // Virtual for patient's age
@@ -35,9 +35,7 @@ PatientSchema.virtual("url").get(function () {
 
 // check this, possibly use my preferred datetime library
 PatientSchema.virtual("date_of_birth_formatted").get(function () {
-  return this.date_of_birth
-    ? DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED)
-    : "";
+  return this.date_of_birth ? format(this.date_of_birth, "PPP") : "";
 });
 
 // Receive birth date in date format, output current age

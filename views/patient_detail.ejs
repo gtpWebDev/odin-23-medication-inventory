@@ -1,0 +1,18 @@
+<h1><%= title %></h1>
+
+<div style="margin-left: 20px; margin-top: 20px">
+  <p>
+    <strong>Patient details: </strong>
+  </p>
+
+  <p>Date of birth: <%= patient.date_of_birth_formatted %></p>
+  <p>Age: <%= patient.age %></p>
+
+  <p><strong>Conditions:</strong></p>
+
+  <ul>
+    <% for (let i=0; i < patient.conditions.length; i++) { %>
+    <li><%= patient.conditions[i].condition %> %></li>
+    <% } %>
+  </ul>
+</div>

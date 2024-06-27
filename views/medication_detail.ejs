@@ -1,0 +1,17 @@
+<h1><%= title %></h1>
+
+<div style="margin-left: 20px; margin-top: 20px">
+  <p>
+    <strong>Medication details: </strong>
+  </p>
+  <p>Name and dose: <%= medication.name_and_dose %></p>
+  <% const aliasText = medication.alias ? medication.alias : "No alias given" %>
+  <p>Alias: <%= aliasText %></p>
+  <p>Quantity held: <%= medication.quantity %></p>
+  <p><strong>Use for the following conditions:</strong></p>
+  <ul>
+    <% for (let i=0; i < medication.conditions.length; i++) { %>
+    <li><%= medication.conditions[i].condition %> %></li>
+    <% } %>
+  </ul>
+</div>

@@ -1,0 +1,16 @@
+<h1><%= title %></h1>
+
+<% if (prescription_list.length) { %>
+<ul>
+  <% for (let i=0; i < prescription_list.length; i++) { %>
+  <li>
+    <%= prescription_list[i].patient.name%> - <%=
+    prescription_list[i].medication.name%>, <%=
+    prescription_list[i].regimen.summary%> -
+    <a href="<%=prescription_list[i].url%>">Detail</a>
+  </li>
+  <% } %>
+</ul>
+<% } else { %>
+<p>There are no prescriptions as yet.</p>
+<% } %>

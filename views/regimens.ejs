@@ -1,0 +1,13 @@
+<h1><%= title %></h1>
+
+<% if (regimen_list.length) { %>
+<ul>
+  <% for (let i=0; i < regimen_list.length; i++) { %>
+  <li>
+    <a href="<%=regimen_list[i].url%>"><%= regimen_list[i].summary %> </a>
+  </li>
+  <% } %>
+</ul>
+<% } else { %>
+<p>There are no regimens as yet.</p>
+<% } %>
