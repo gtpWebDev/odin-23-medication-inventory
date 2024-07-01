@@ -1,0 +1,15 @@
+<h1><%= title %></h1>
+
+<% if (dose_list.length) { %>
+<ul>
+  <% for (let i=0; i < dose_list.length; i++) { %>
+  <li>
+    <a href="<%=dose_list[i].url%>"
+      ><%= dose_list[i].quantity %> at <%= dose_list[i].time %></a
+    >
+  </li>
+  <% } %>
+</ul>
+<% } else { %>
+<p>There are no doses as yet.</p>
+<% } %>

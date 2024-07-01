@@ -5,27 +5,17 @@ const Schema = mongoose.Schema;
 /*
   Note, this database assumes every day has the same regimen.
   I am also using strings for the time.
-
-  Regimen consists of:
-    summary: simple description of regimen - e.g. "1 per day in morning"
-    dosages: an array of objects with times and quantities - e.g.:
-      {
-        time: "8am",
-        quantity: 1
-      }
 */
 
 // Option: dosages: { type: [Schema.Types.Mixed], required: true },
 
-const RegimenSchema = new Schema({
-  summary: { type: String, required: true, maxLength: 100 },
-  dosages: [
-    {
-      time: { type: String, required: true },
-      quantity: { type: Number, required: true },
-    },
-  ],
-});
+const RegimenSchema = new Schema(
+  {
+    summary: { type: String, required: true, maxLength: 100 },
+    doses: [{ type: Schema.Types.ObjectId, ref: "Dose" }],
+  },
+  { collection: "regimens" }
+);
 
 // Virtual for author's URL
 RegimenSchema.virtual("url").get(function () {

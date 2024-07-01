@@ -1,0 +1,64 @@
+<h1><%= title %></h1>
+
+<% const summaryDefault = (undefined===regimen ? '' : regimen.summary) %>
+
+<form method="POST">
+  <div class="form-group">
+    <label for="summary">Summary: </label>
+    <input
+      id="summary"
+      class="form-control"
+      type="text"
+      placeholder="e.g.'1 per day dinner-time'"
+      name="summary"
+      required
+      value="<%= summaryDefault %>"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="doses">Doses: </label>
+    <div>
+      <% for (const dose of doses) { %>
+
+      <div style="display: inline; padding-right: 10px">
+        <% if (dose.checked) { %>
+        <input
+          class="checkbox-input"
+          type="checkbox"
+          name="doses"
+          id="<%=dose._id %>"
+          value="<%=dose._id%>"
+          checked
+        />
+        <% } else { %>
+        <input
+          class="checkbox-input"
+          type="checkbox"
+          name="doses"
+          id="<%= dose._id %>"
+          value="<%= dose._id %>"
+        />
+        <% } %>
+        <label for="dose._id"
+          >&nbsp;<strong
+            ><%= dose.quantity %> at <%= dose.time %></strong
+          ></label
+        >
+        <br />
+      </div>
+
+      <% } %>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<% if (errors) {%>
+<ul>
+  <% for (const error of errors) { %> <% const errorText = `You entered
+  "${error.value}" for ${error.path}. ${error.msg}` %>
+  <li><%= errorText %></li>
+  <% } %>
+</ul>
+<% } %>

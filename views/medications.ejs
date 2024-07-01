@@ -4,11 +4,7 @@
 <ul>
   <% for (let i=0; i < medication_list.length; i++) { %>
   <li>
-    <a href="<%=medication_list[i].url%>"
-      ><%= medication_list[i].name_and_dose %>
-    </a>
-    <% let quantityText = " (" + medication_list[i].quantity + " held)" %> <%=
-    quantityText %>
+    <a href="<%=medication_list[i].url%>"><%= medication_list[i].name %> </a>
   </li>
   <% } %>
 </ul>

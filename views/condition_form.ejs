@@ -1,0 +1,40 @@
+<h1><%= title %></h1>
+
+<form method="POST">
+  <div class="form-group">
+    <label for="name">Condition: </label>
+
+    <% const nameDefault = (undefined===condition ? '' : condition.name) %> <%
+    const detailDefault = (undefined===condition ? '' : condition.detail) %>
+
+    <input
+      id="name"
+      class="form-control"
+      type="text"
+      placeholder="High blood pressure, etc..."
+      name="name"
+      required
+      value="<%= nameDefault %>"
+    />
+    <label for="detail">Detail: </label>
+    <input
+      id="detail"
+      class="form-control"
+      type="text"
+      placeholder="Further explanation of condition"
+      name="detail"
+      required
+      value="<%= detailDefault %>"
+    />
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>
+
+<% if (errors) {%>
+<ul>
+  <% for (const error of errors) { %> <% const errorText = `You entered
+  "${error.value}" for ${error.path}. ${error.msg}` %>
+  <li><%= errorText %></li>
+  <% } %>
+</ul>
+<% } %>

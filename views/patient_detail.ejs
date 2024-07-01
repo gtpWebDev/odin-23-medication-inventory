@@ -12,7 +12,49 @@
 
   <ul>
     <% for (let i=0; i < patient.conditions.length; i++) { %>
-    <li><%= patient.conditions[i].condition %> %></li>
+    <li><%= patient.conditions[i].name %> %></li>
     <% } %>
   </ul>
+
+  <p><strong>Prescriptions:</strong></p>
+
+  <ul>
+    <% for (let i=0; i < patient_prescriptions.length; i++) { %>
+    <li>
+      <%= patient_prescriptions[i].prescription.medication.name %> - <%=
+      patient_prescriptions[i].prescription.regimen.summary %> - <%=
+      patient_prescriptions[i].stockData.inventoryEndOfToday %> days of stock -
+      <a href="<%=patient_prescriptions[i].prescription.url%>">Detail</a>
+    </li>
+    <% } %>
+  </ul>
+
+  <hr />
+
+  <p>
+    Patient has enough medicine for <%=
+    prescription_order_info.minimumDaysInventory %> days
+  </p>
+
+  <p>
+    Last day of medicines is <%=
+    prescription_order_info.earliestFinalFullDay_formatted %>
+  </p>
+
+  <p>
+    You should order by
+    <strong><%= prescription_order_info.orderDay_formatted %></strong>
+  </p>
 </div>
+
+<hr />
+
+<p>
+  <% const deleteUrl = patient.url + "/delete" %>
+  <a href="<%= deleteUrl %>">Delete patient</a>
+</p>
+
+<p>
+  <% const updateUrl = patient.url + "/update" %>
+  <a href="<%= updateUrl %>">Update patient</a>
+</p>

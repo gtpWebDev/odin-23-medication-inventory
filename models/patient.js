@@ -4,12 +4,15 @@ const { format } = require("date-fns");
 
 const Schema = mongoose.Schema;
 
-const PatientSchema = new Schema({
-  first_name: { type: String, required: true, maxLength: 100 },
-  family_name: { type: String, required: true, maxLength: 100 },
-  date_of_birth: { type: Date, required: true, max: new Date() },
-  conditions: [{ type: Schema.Types.ObjectId, ref: "Condition" }],
-});
+const PatientSchema = new Schema(
+  {
+    first_name: { type: String, required: true, maxLength: 100 },
+    family_name: { type: String, required: true, maxLength: 100 },
+    date_of_birth: { type: Date, required: true, max: new Date() },
+    conditions: [{ type: Schema.Types.ObjectId, ref: "Condition" }],
+  },
+  { collection: "patients" }
+);
 
 // Virtual for patient's full name which does not need to be stored in the db
 PatientSchema.virtual("name").get(function () {
@@ -33,10 +36,23 @@ PatientSchema.virtual("url").get(function () {
   return `/medications/patient/${this._id}`;
 });
 
-// check this, possibly use my preferred datetime library
 PatientSchema.virtual("date_of_birth_formatted").get(function () {
   return this.date_of_birth ? format(this.date_of_birth, "PPP") : "";
 });
+
+// changes date to "YYY-MM-DD" for use by date input on form.
+PatientSchema.virtual("date_of_birth_form_formatted").get(function () {
+  return this.date_of_birth ? formatDateForFormInput(this.date_of_birth) : "";
+});
+
+// Receive date, output "YYY-MM-DD" form, for use by date input on form.
+function formatDateForFormInput(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
 
 // Receive birth date in date format, output current age
 function calculateAge(birthDate) {

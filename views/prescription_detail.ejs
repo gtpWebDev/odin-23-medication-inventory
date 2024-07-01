@@ -3,8 +3,35 @@
   <p>
     <strong>Prescription details: </strong>
   </p>
-  <p>Patient: <%= prescription.patient.name %></p>
-  <p>Medication: <%= prescription.medication.name %></p>
-  <p>Regimen: <%= prescription.regimen.summary %></p>
-  <p>Status: <%= prescription.status %></p>
+  <p>Patient: <%= viewInfo.prescription.patient.name %></p>
+  <p>Medication: <%= viewInfo.prescription.medication.name %></p>
+  <p>Regimen: <%= viewInfo.prescription.regimen.summary %></p>
+  <p>Status: <%= viewInfo.prescription.status %></p>
+  <p>
+    Inventory updated on: <%=
+    viewInfo.prescription.inventory_update_date_formatted %>
+  </p>
+  <p>
+    Quantity at end of inventory day: <%=
+    viewInfo.prescription.inventory_update_quantity_endofday %>
+  </p>
+
+  <hr />
+
+  <p>
+    Remaining stock: <%= viewInfo.stockData.inventoryEndOfToday %> days of stock
+  </p>
+  <p>Final day of stock: <%= viewInfo.stockData.finalFullDay_formatted %></p>
 </div>
+
+<hr />
+
+<p>
+  <% const deleteUrl = viewInfo.prescription.url + "/delete" %>
+  <a href="<%= deleteUrl %>">Delete prescription</a>
+</p>
+
+<p>
+  <% const updateUrl = viewInfo.prescription.url + "/update" %>
+  <a href="<%= updateUrl %>">Update prescription</a>
+</p>

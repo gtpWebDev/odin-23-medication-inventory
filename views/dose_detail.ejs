@@ -1,0 +1,24 @@
+<h1>Dose: <%= title %></h1>
+
+<div style="margin-left: 20px; margin-top: 20px">
+  <p>
+    <strong>Time: </strong>
+    <%= dose.time %>
+  </p>
+  <p>
+    <strong>Quantity: </strong>
+    <%= dose.quantity %>
+  </p>
+</div>
+
+<hr />
+
+<p>
+  <% const deleteUrl = dose.url + "/delete" %>
+  <a href="<%= deleteUrl %>">Delete dose</a>
+</p>
+
+<p>
+  <% const updateUrl = dose.url + "/update" %>
+  <a href="<%= updateUrl %>">Update dose</a>
+</p>

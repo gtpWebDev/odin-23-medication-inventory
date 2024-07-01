@@ -1,0 +1,40 @@
+<h1><%= title %></h1>
+
+<% const timeDefault = (undefined===dose ? '' : dose.time) %> <% const
+quantityDefault = (undefined===dose ? '' : dose.quantity) %>
+
+<form method="POST">
+  <div class="form-group">
+    <label for="time">Time: </label>
+    <input
+      id="time"
+      class="form-control"
+      type="text"
+      placeholder="e.g. '10:00 am', '13:00 pm' to help with sorting"
+      name="time"
+      required
+      value="<%= timeDefault %>"
+    />
+
+    <label for="quantity">Detail: </label>
+    <input
+      id="quantity"
+      class="form-control"
+      type="text"
+      placeholder="How many units to take? e.g. 2"
+      name="quantity"
+      required
+      value="<%= quantityDefault %>"
+    />
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>
+
+<% if (errors) {%>
+<ul>
+  <% for (const error of errors) { %> <% const errorText = `You entered
+  "${error.value}" for ${error.path}. ${error.msg}` %>
+  <li><%= errorText %></li>
+  <% } %>
+</ul>
+<% } %>

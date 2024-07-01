@@ -4,14 +4,24 @@
   <p>
     <strong>Medication details: </strong>
   </p>
-  <p>Name and dose: <%= medication.name_and_dose %></p>
   <% const aliasText = medication.alias ? medication.alias : "No alias given" %>
   <p>Alias: <%= aliasText %></p>
-  <p>Quantity held: <%= medication.quantity %></p>
   <p><strong>Use for the following conditions:</strong></p>
   <ul>
     <% for (let i=0; i < medication.conditions.length; i++) { %>
-    <li><%= medication.conditions[i].condition %> %></li>
+    <li><%= medication.conditions[i].name %> %></li>
     <% } %>
   </ul>
 </div>
+
+<hr />
+
+<p>
+  <% const deleteUrl = medication.url + "/delete" %>
+  <a href="<%= deleteUrl %>">Delete medication</a>
+</p>
+
+<p>
+  <% const updateUrl = medication.url + "/update" %>
+  <a href="<%= updateUrl %>">Update medication</a>
+</p>

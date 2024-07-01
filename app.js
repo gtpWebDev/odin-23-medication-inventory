@@ -5,6 +5,15 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
+/*
+To do list:
+  - testing, particularly on utility functions
+  - easier updating of inventory when new prescription comes in
+    - on patient detail, rather than having to go to prescription detail many times
+
+
+*/
+
 // Set up mongoose connection
 const mongoose = require("mongoose");
 

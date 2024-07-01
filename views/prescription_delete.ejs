@@ -1,0 +1,32 @@
+<h1><%= title %>: <%= prescription._id %></h1>
+
+<hr />
+
+<p>
+  <strong>Prescription details: </strong>
+</p>
+Patient: <%= prescription.patient.name %><br />
+Medication: <%= prescription.medication.name %><br />
+Regimen: <%= prescription.regimen.summary %><br />
+Inventory Update Date: <%= prescription.inventory_update_date_formatted %><br />
+Inventory Update Quantity: <%= prescription.inventory_update_quantity_endofday
+%><br />
+Status: <%= prescription.status %>
+
+<hr />
+
+<p>Do you really want to delete this prescription?</p>
+
+<form method="POST">
+  <div class="form-group">
+    <input
+      class="form-control"
+      type="hidden"
+      id="prescriptionid"
+      name="prescriptionid"
+      value="<%= prescription._id %>"
+    />
+
+    <button class="btn btn-primary" type="submit">Delete</button>
+  </div>
+</form>

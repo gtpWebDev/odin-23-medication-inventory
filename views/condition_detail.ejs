@@ -1,4 +1,4 @@
-<h1><%= condition.condition %></h1>
+<h1><%= condition.name %></h1>
 
 <div style="margin-left: 20px; margin-top: 20px">
   <p>
@@ -6,3 +6,15 @@
     <%= condition.detail %>
   </p>
 </div>
+
+<hr />
+
+<p>
+  <% const deleteUrl = condition.url + "/delete" %>
+  <a href="<%= deleteUrl %>">Delete condition</a>
+</p>
+
+<p>
+  <% const updateUrl = condition.url + "/update" %>
+  <a href="<%= updateUrl %>">Update condition</a>
+</p>

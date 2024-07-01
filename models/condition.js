@@ -2,10 +2,13 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const ConditionSchema = new Schema({
-  condition: { type: String, required: true, maxLength: 100 },
-  detail: { type: String, required: true, maxLength: 200 },
-});
+const ConditionSchema = new Schema(
+  {
+    name: { type: String, required: true, maxLength: 100 },
+    detail: { type: String, required: true, maxLength: 200 },
+  },
+  { collection: "conditions" }
+);
 
 // Virtual for author's URL
 ConditionSchema.virtual("url").get(function () {

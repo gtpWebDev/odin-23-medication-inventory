@@ -1,0 +1,43 @@
+<h1><%= title %>: <strong> <%= medication.name %> </strong></h1>
+
+<% if (medication_prescriptions.length) { %>
+
+<p>
+  <strong
+    >Delete the following prescriptions before attempting to delete this
+    medication.</strong
+  >
+</p>
+
+<div style="margin-left: 20px; margin-top: 20px">
+  <h4>Prescriptions</h4>
+  <dl>
+    <% for (const prescription of medication_prescriptions) { %>
+    <dt>
+      <%= prescription.patient.name%> - <%= prescription.medication.name%>, <%=
+      prescription.regimen.summary%> -
+      <a href="<%= prescription.url %>">Detail</a>
+    </dt>
+    <% } %>
+  </dl>
+</div>
+
+<% } else { %>
+
+<p>Do you really want to delete this medication?</p>
+
+<form method="POST">
+  <div class="form-group">
+    <input
+      class="form-control"
+      type="hidden"
+      id="medicationid"
+      name="medicationid"
+      value="<%= medication._id %>"
+    />
+
+    <button class="btn btn-primary" type="submit">Delete</button>
+  </div>
+</form>
+
+<% } %>

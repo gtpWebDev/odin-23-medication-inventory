@@ -6,10 +6,22 @@
   </p>
 
   <ul>
-    <% for (let i=0; i < regimen.dosages.length; i++) { %>
+    <% for (let i=0; i < regimen.doses.length; i++) { %>
     <li>
-      Take <%= regimen.dosages[i].quantity %> at <%= regimen.dosages[i].time %>
+      Take <%= regimen.doses[i].quantity %> at <%= regimen.doses[i].time %>
     </li>
     <% } %>
   </ul>
 </div>
+
+<hr />
+
+<p>
+  <% const deleteUrl = regimen.url + "/delete" %>
+  <a href="<%= deleteUrl %>">Delete regimen</a>
+</p>
+
+<p>
+  <% const updateUrl = regimen.url + "/update" %>
+  <a href="<%= updateUrl %>">Update regimen</a>
+</p>

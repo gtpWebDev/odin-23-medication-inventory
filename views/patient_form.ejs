@@ -1,0 +1,85 @@
+<h1><%= title %></h1>
+
+<% const firstNameDefault = (undefined===patient ? '' : patient.first_name) %>
+<% const familyNameDefault = (undefined===patient ? '' : patient.family_name) %>
+<% const dobDefault = (undefined===patient ? '':
+patient.date_of_birth_form_formatted) %>
+
+<form method="POST">
+  <div class="form-group">
+    <label for="first_name">Name: </label>
+    <input
+      id="first_name"
+      class="form-control"
+      type="text"
+      placeholder="e.g. 'John'"
+      name="first_name"
+      required
+      value="<%= firstNameDefault %>"
+    />
+
+    <label for="family_name">Alias: </label>
+    <input
+      id="family_name"
+      class="form-control"
+      type="text"
+      placeholder="e.g. 'Smith'"
+      name="family_name"
+      value="<%= familyNameDefault %>"
+    />
+
+    <label for="date_of_birth">Date of birth: </label>
+    <input
+      id="date_of_birth"
+      class="form-control"
+      type="date"
+      placeholder="e.g. 'Smith'"
+      name="date_of_birth"
+      value="<%= dobDefault %>"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="conditions">Conditions: </label>
+    <div>
+      <% for (const condition of conditions) { %>
+
+      <div style="display: inline; padding-right: 10px">
+        <% if (condition.checked) { %>
+        <input
+          class="checkbox-input"
+          type="checkbox"
+          name="conditions"
+          id="<%=condition._id %>"
+          value="<%=condition._id%>"
+          checked
+        />
+        <% } else { %>
+        <input
+          class="checkbox-input"
+          type="checkbox"
+          name="conditions"
+          id="<%= condition._id %>"
+          value="<%= condition._id %>"
+        />
+        <% } %>
+        <label for="condition._id"
+          >&nbsp;<strong><%=condition.name%></strong></label
+        >
+        <br />
+      </div>
+
+      <% } %>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<% if (errors) {%>
+<ul>
+  <% for (const error of errors) { %> <% const errorText = `You entered
+  "${error.value}" for ${error.path}. ${error.msg}` %>
+  <li><%= errorText %></li>
+  <% } %>
+</ul>
+<% } %>

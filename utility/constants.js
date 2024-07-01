@@ -1,0 +1,1 @@
+exports.prescriptionStatusOptions = ["Active", "Inactive"];

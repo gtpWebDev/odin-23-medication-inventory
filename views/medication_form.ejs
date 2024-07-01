@@ -1,0 +1,73 @@
+<h1><%= title %></h1>
+
+<% const nameDefault = (undefined===medication ? '' : medication.name) %> <%
+const aliasDefault = (undefined===medication ? '': medication.alias) %>
+
+<form method="POST">
+  <div class="form-group">
+    <label for="name">Name: </label>
+    <input
+      id="name"
+      class="form-control"
+      type="text"
+      placeholder="Add dose - e.g. 'Paracetamol 500mg'"
+      name="name"
+      required
+      value="<%= nameDefault %>"
+    />
+
+    <label for="alias">Alias: </label>
+    <input
+      id="alias"
+      class="form-control"
+      type="text"
+      placeholder="Alternative name for the medication..."
+      name="alias"
+      value="<%= aliasDefault %>"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="conditions">Conditions: </label>
+    <div>
+      <% for (const condition of conditions) { %>
+
+      <div style="display: inline; padding-right: 10px">
+        <% if (condition.checked) { %>
+        <input
+          class="checkbox-input"
+          type="checkbox"
+          name="conditions"
+          id="<%=condition._id %>"
+          value="<%=condition._id%>"
+          checked
+        />
+        <% } else { %>
+        <input
+          class="checkbox-input"
+          type="checkbox"
+          name="conditions"
+          id="<%= condition._id %>"
+          value="<%= condition._id %>"
+        />
+        <% } %>
+        <label for="condition._id"
+          >&nbsp;<strong><%=condition.name%></strong></label
+        >
+        <br />
+      </div>
+
+      <% } %>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<% if (errors) {%>
+<ul>
+  <% for (const error of errors) { %> <% const errorText = `You entered
+  "${error.value}" for ${error.path}. ${error.msg}` %>
+  <li><%= errorText %></li>
+  <% } %>
+</ul>
+<% } %>
