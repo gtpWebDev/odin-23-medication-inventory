@@ -5,6 +5,10 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
+require("dotenv").config();
+
+const apiKey = process.env.API_KEY;
+
 /*
 To do list:
   - testing, particularly on utility functions
@@ -26,8 +30,7 @@ const app = express();
 // globally opts into filtering by properties that aren't in the schema
 mongoose.set("strictQuery", false);
 
-const dev_db_url =
-  "mongodb+srv://admin:Topofmon-01@cluster0.fcjfpao.mongodb.net/medication_inventory?retryWrites=true&w=majority&appName=Cluster0";
+const dev_db_url = apiKey;
 
 // will apply process.env later
 // const mongoDB = process.env.MONGODB_URI || dev_db_url;
